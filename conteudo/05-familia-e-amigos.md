@@ -2,9 +2,6 @@
 
 > **Título da página no WordPress:** Família e Amigos  (corrigido de "Failia e amigos")
 > **Subpágina de Interesses** → na barra lateral, "Página ascendente": **Interesses**.
-> Copie o texto a partir da linha abaixo do traço e cole no editor da página.
-> Os avisos 📷 são só lembretes de onde colocar imagens — **não cole essas linhas**.
-
 ---
 
 Sou daquelas pessoas que acreditam que as melhores coisas da vida não são coisas, mas os momentos que compartilhamos e as pessoas que caminham ao nosso lado. Por isso, não poderia deixar de falar sobre minha família e meus amigos, que têm um lugar enorme no meu coração.
