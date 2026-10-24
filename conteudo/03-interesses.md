@@ -1,8 +1,5 @@
 # Página: Interesses
 
-> **Título da página no WordPress:** Interesses  — **tópico principal do menu**
-> Subpáginas (filhas) desta página: **Igreja e Projetos Sociais** (04) e **Família e Amigos** (05).
-
 ---
 
 Sempre fui uma pessoa bem agitada, daquelas que gostam de experimentar coisas novas, descobrir hobbies diferentes e se aventurar em interesses que, às vezes, duram bastante tempo e, em outras, nem tanto assim. Gosto de explorar novas possibilidades, conhecer coisas diferentes e encontrar pequenas atividades que tornam a vida mais divertida. Aqui estão algumas delas!

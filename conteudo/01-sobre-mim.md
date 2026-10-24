@@ -1,11 +1,5 @@
 # Página: Sobre Mim
 
-> **Título da página no WordPress:** Sobre Mim
-> **Esta será a página inicial do site** — **tópico principal do menu**.
-> Copie o texto a partir da linha abaixo do traço e cole no editor da página.
-> 📷 Sugestão (opcional): uma foto sua no topo da página, se quiser.
-
----
 
 Meu nome é Raissa Nunes Peret, tenho 20 anos e sou natural de Alfenas-MG. Sou estudante de Ciência da Computação na Universidade Federal de Alfenas (UNIFAL-MG), curso no qual enfrentei diversos desafios e passei por experiências que contribuíram para o meu crescimento pessoal e acadêmico. Atualmente, estou no 6º período e sigo construindo minha trajetória, aprendendo e descobrindo novas possibilidades dentro e fora da universidade.
 

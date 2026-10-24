@@ -1,8 +1,5 @@
 # Página: Formação
 
-> **Título da página no WordPress:** Formação
-> **Tópico principal do menu** (sem página ascendente).
----
 
 - Universidade Federal de Alfenas (UNIFAL-MG) — Bacharelado em Ciência da Computação (em andamento).
 

@@ -1,11 +1,5 @@
 # Página: Igreja e Projetos Sociais
 
-> **Título da página no WordPress:** Igreja e Projetos Sociais
-> **Subpágina de Interesses** → na barra lateral, "Página ascendente": **Interesses**.
-> Copie o texto a partir da linha abaixo do traço e cole no editor da página.
-> Nenhuma alteração foi feita neste texto (só o título foi padronizado com iniciais maiúsculas).
-> 📷 Sugestão (opcional): fotos do REPIC 94 ou das atividades da pastoral, se tiver.
-
 ---
 
 A minha fé é uma parte muito importante de quem sou. Desde que nasci, faço parte da Igreja Católica Apostólica Romana e, ao longo da vida, venho buscando me aproximar cada vez mais de Deus. É claro que nem sempre é fácil manter essa proximidade, afinal, a vida tem seus desafios e, em alguns momentos, nossa fé acaba sendo colocada à prova. Mesmo assim, sigo tentando fortalecer minha caminhada e encontrar em Deus um apoio para os diferentes momentos da minha vida.

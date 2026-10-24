@@ -1,7 +1,5 @@
 # Página: Família e Amigos
 
-> **Título da página no WordPress:** Família e Amigos  (corrigido de "Failia e amigos")
-> **Subpágina de Interesses** → na barra lateral, "Página ascendente": **Interesses**.
 ---
 
 Sou daquelas pessoas que acreditam que as melhores coisas da vida não são coisas, mas os momentos que compartilhamos e as pessoas que caminham ao nosso lado. Por isso, não poderia deixar de falar sobre minha família e meus amigos, que têm um lugar enorme no meu coração.
