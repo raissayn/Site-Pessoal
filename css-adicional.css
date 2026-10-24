@@ -1,0 +1,542 @@
+/* =====================================================================
+   CSS ADICIONAL — Site pessoal da Raissa
+   Tema: Twenty Twenty-Five | Estilo: tecnológico e minimalista, modo claro
+   Página única com rolagem contínua e menu com âncoras.
+   Onde colar: Aparência > Editor > Estilos > (⋮) > CSS adicional
+   (os nomes dos menus podem variar conforme a versão do WordPress)
+   ===================================================================== */
+
+
+/* ---------------------------------------------------------------------
+   1. FONTES (arquivos locais em wp-content/uploads/fonts)
+   Ficam dentro do site: funcionam offline e na exportação estática.
+   --------------------------------------------------------------------- */
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("/wp-content/uploads/fonts/space-grotesk.woff2") format("woff2");
+  font-weight: 300 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("/wp-content/uploads/fonts/inter.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/wp-content/uploads/fonts/jetbrains-mono.woff2") format("woff2");
+  font-weight: 100 800;
+  font-display: swap;
+}
+
+
+/* ---------------------------------------------------------------------
+   2. PALETA DE CORES (variáveis)
+   As 6 cores da paleta + neutros escuros derivados dela para o texto
+   (as cores pastel não têm contraste para texto sobre fundo claro).
+   Contraste sobre o fundo creme: texto 15,5:1 · suave 7,8:1 · links 6,9:1
+   --------------------------------------------------------------------- */
+:root {
+  /* Paleta */
+  --rosa:   #FADCFE;
+  --ciano:  #C7F3F6;
+  --creme:  #FEFDF9;
+  --azul:   #A4C6E9;
+  --indigo: #838BCC;
+  --lilas:  #B8AEE3;
+
+  /* Neutros derivados (tons escuros do índigo) */
+  --texto:          #1E2040; /* textos e títulos                    */
+  --texto-suave:    #4A4E78; /* textos secundários                  */
+  --destaque-texto: #4C5396; /* links, rótulos e item ativo do menu */
+
+  /* Usos */
+  --cor-fundo: var(--creme);
+  --cor-borda: rgba(131, 139, 204, 0.28);  /* índigo semitransparente */
+  --brilho:    rgba(184, 174, 227, 0.55);  /* glow lilás suave        */
+
+  /* Faz os blocos que usam a paleta do tema seguirem a nova paleta */
+  --wp--preset--color--base:     var(--creme);
+  --wp--preset--color--contrast: var(--texto);
+
+  /* Tipografia */
+  --fonte-titulo: "Space Grotesk", system-ui, sans-serif;
+  --fonte-texto:  "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --fonte-mono:   "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  /* Altura do cabeçalho fixo (usada para as seções não ficarem escondidas) */
+  --altura-cabecalho: 4.25rem;
+}
+
+
+/* ---------------------------------------------------------------------
+   3. BASE DA PÁGINA
+   --------------------------------------------------------------------- */
+body {
+  background-color: var(--cor-fundo);
+  color: var(--texto);
+  font-family: var(--fonte-texto);
+  font-size: 1.0625rem;   /* ≈ 17px */
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  counter-reset: secao;   /* numeração automática das seções (01, 02...) */
+}
+
+/* Rolagem suave ao clicar no menu — só para quem não desativou animações */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+.wp-block-post-content p,
+.wp-block-post-content .wp-block-list {
+  margin-block: 0 1.4em;
+}
+
+
+/* ---------------------------------------------------------------------
+   4. CABEÇALHO FIXO E MENU
+   Fica preso no topo ao rolar, com fundo creme levemente translúcido.
+   --------------------------------------------------------------------- */
+header.wp-block-template-part {
+  position: sticky;
+  top: var(--wp-admin--admin-bar--height, 0px); /* desce se a barra do admin estiver visível */
+  z-index: 100;
+  border-bottom: 1px solid var(--cor-borda);
+}
+/* Fundo translúcido com desfoque numa camada própria (::before).
+   Se o desfoque ficasse no próprio cabeçalho, o menu do celular (tela cheia)
+   ficaria "preso" dentro da faixa do cabeçalho. */
+header.wp-block-template-part::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: rgba(254, 253, 249, 0.82);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Logo "RN" na esquerda. Fica posicionado à parte (absolute) para o menu
+   continuar exatamente centralizado, sem deslocar nada. */
+header.wp-block-template-part .alignfull {
+  position: relative;
+}
+.logo-rn {
+  position: absolute;
+  left: var(--wp--preset--spacing--30);
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 0;
+  line-height: 1;
+}
+.logo-rn a {
+  color: var(--texto);
+  font-family: var(--fonte-mono);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+}
+.logo-rn a:hover {
+  color: var(--destaque-texto);
+}
+
+/* Itens do menu: fonte monoespaçada, pequenos e discretos */
+.wp-block-navigation a {
+  color: var(--texto-suave);
+  font-family: var(--fonte-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  padding: 0.3rem 0.1rem;
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.wp-block-navigation a:hover {
+  color: var(--destaque-texto);
+}
+
+/* Item da seção visível no momento (marcado pelo script do rodapé) */
+.wp-block-navigation a[aria-current="true"] {
+  color: var(--destaque-texto);
+  border-bottom-color: var(--indigo);
+}
+
+/* Submenu de Interesses (Igreja, Família e Amigos, Entre outros) */
+.wp-block-navigation .wp-block-navigation__submenu-container {
+  background-color: var(--creme) !important; /* o tema aplica a cor direto no bloco */
+  border: 1px solid var(--cor-borda) !important;
+  border-radius: 10px;
+  padding: 0.4rem 0;
+  min-width: 15rem;
+  box-shadow: 0 8px 24px rgba(131, 139, 204, 0.18);
+}
+.wp-block-navigation .wp-block-navigation__submenu-container a {
+  padding: 0.45rem 1rem;
+}
+.wp-block-navigation__submenu-icon {
+  color: var(--texto-suave);
+}
+
+/* Menu aberto no celular (tela cheia) */
+.wp-block-navigation__responsive-container.is-menu-open {
+  background-color: var(--creme) !important; /* !important: o tema aplica a cor direto no bloco */
+  color: var(--texto) !important;
+}
+.wp-block-navigation__responsive-container.is-menu-open a {
+  font-size: 1rem;
+  text-align: center;
+}
+/* No menu do celular, o submenu aparece aberto e sem a "caixinha" do computador */
+.wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__submenu-container {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none;
+  padding: 0;
+  min-width: 0;
+}
+.wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__submenu-container a {
+  color: var(--texto-suave);
+  font-size: 0.9rem;
+}
+
+
+/* ---------------------------------------------------------------------
+   5. TOPO (HERO): "Olá, eu sou" + nome + botão à esquerda, foto à direita
+   Fundo liso da paleta; ocupa a altura da tela menos o cabeçalho.
+   --------------------------------------------------------------------- */
+/* Tira o espaço automático que o tema coloca entre cabeçalho, topo, conteúdo e rodapé */
+.wp-site-blocks > .hero,
+.wp-site-blocks > main,
+.wp-site-blocks > footer {
+  margin-block-start: 0;
+}
+
+.hero {
+  --tamanho-foto: clamp(13rem, 24vw, 20rem); /* ≈ 300–320px no desktop */
+  min-height: calc(100svh - var(--altura-cabecalho) - var(--wp-admin--admin-bar--height, 0px));
+  display: flex;
+  align-items: center;
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.25rem, 5vw, 3rem);
+  background: var(--cor-fundo);
+  border-bottom: 1px solid var(--cor-borda);
+  scroll-margin-top: calc(var(--altura-cabecalho) + var(--wp-admin--admin-bar--height, 0px));
+}
+
+/* Container centralizado com largura máxima: texto | foto */
+.hero-conteudo {
+  width: 100%;
+  max-width: 68rem;
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: clamp(2.5rem, 6vw, 6rem);
+}
+.hero-conteudo > * {
+  margin: 0; /* anula o espaçamento automático do tema entre blocos */
+}
+
+.hero-saudacao {
+  margin: 0 0 0.75rem;
+  font-family: var(--fonte-texto);
+  font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+  font-weight: 400;
+  color: var(--texto);
+}
+
+.hero-nome {
+  margin: 0;
+  font-family: var(--fonte-titulo);
+  font-size: clamp(2.75rem, 7vw, 5.75rem); /* fluido: diminui sozinho no celular */
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  color: var(--texto);
+}
+
+/* Botão em pílula com contorno fino */
+.hero-acoes {
+  margin-top: clamp(2rem, 4vw, 2.75rem);
+}
+.hero-botao .wp-block-button__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 3rem;                       /* área de toque confortável */
+  padding: 0.8rem 1.75rem;
+  background: transparent;
+  color: var(--texto);
+  border: 1px solid var(--texto);
+  border-radius: 999px;
+  font-family: var(--fonte-mono);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.hero-botao .wp-block-button__link:hover {
+  background: var(--destaque-texto);
+  border-color: var(--destaque-texto);
+  color: var(--creme);                    /* 6,9:1 sobre o destaque */
+}
+
+/* Foto circular com anel fino neutro */
+.hero-foto {
+  width: var(--tamanho-foto);
+  aspect-ratio: 1;
+  margin: 0;
+  padding: 0.5rem;                        /* espaço entre a foto e o anel */
+  border: 1px solid var(--texto-suave);
+  border-radius: 50%;
+}
+.hero .hero-foto img { /* ".hero" na frente: vence a regra geral de imagens (bloco 9) */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 0;
+  border-radius: 50%;
+}
+/* Enquanto não houver foto: círculo liso em tom da paleta */
+.hero-foto--provisoria {
+  background: var(--lilas) content-box;
+}
+
+/* Tablet e celular: uma coluna, foto acima do texto, tudo centralizado */
+@media (max-width: 781px) {
+  .hero-conteudo {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+  }
+  .hero-foto {
+    order: -1;
+    --tamanho-foto: clamp(11rem, 50vw, 15rem);
+  }
+  .hero-acoes {
+    justify-content: center;
+  }
+}
+
+
+/* ---------------------------------------------------------------------
+   6. SEÇÕES (todas iguais, inclusive o Contato no rodapé)
+   Número em fonte mono + título + linha fina em degradê da paleta.
+   --------------------------------------------------------------------- */
+.secao {
+  counter-increment: secao;
+  padding-block: clamp(3.5rem, 8vw, 6rem);
+  scroll-margin-top: calc(var(--altura-cabecalho) + var(--wp-admin--admin-bar--height, 0px));
+}
+/* Subtópicos com âncora no menu (ex.: Família e Amigos dentro de Interesses) */
+.subsecao {
+  scroll-margin-top: calc(var(--altura-cabecalho) + var(--wp-admin--admin-bar--height, 0px) + 1rem);
+}
+/* Mesmo espaço acima do título que os outros subtítulos (o tema zera o do 1º item do bloco) */
+.secao .subsecao > h3:first-child {
+  margin-top: 2.75rem;
+}
+.secao + .secao,
+footer .secao {
+  border-top: 1px solid var(--cor-borda);
+}
+
+/* Rótulo "01", "02"... acima do título */
+.secao > h2::before {
+  content: counter(secao, decimal-leading-zero);
+  display: block;
+  margin-bottom: 0.6rem;
+  font-family: var(--fonte-mono);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: var(--destaque-texto);
+}
+
+/* Título da seção */
+.secao > h2 {
+  margin: 0 0 2rem;
+  padding-bottom: 1rem;
+  font-family: var(--fonte-titulo);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--texto);
+  border-bottom: 1px solid transparent;
+  border-image: linear-gradient(90deg, var(--indigo), var(--lilas) 35%, transparent 70%) 1;
+}
+
+/* Subtítulos dentro de uma seção (ex.: Música, Leitura) */
+.secao h3 {
+  margin: 2.75rem 0 0.9rem;
+  font-family: var(--fonte-titulo);
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--texto);
+}
+.secao h3::before {
+  content: "";
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-right: 0.65rem;
+  vertical-align: 0.15em;
+  border-radius: 50%;
+  background: var(--indigo);
+  box-shadow: 0 0 10px var(--brilho);
+}
+
+
+/* ---------------------------------------------------------------------
+   7. LINKS E FOCO DO TECLADO
+   --------------------------------------------------------------------- */
+a {
+  color: var(--destaque-texto);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: color 0.2s ease;
+}
+a:hover {
+  color: var(--texto);
+}
+
+a:focus-visible,
+button:focus-visible,
+.wp-element-button:focus-visible {
+  outline: 2px solid var(--destaque-texto);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+
+/* ---------------------------------------------------------------------
+   8. RODAPÉ (Contato)
+   --------------------------------------------------------------------- */
+footer.wp-block-template-part {
+  color: var(--texto-suave);
+}
+
+.wp-block-social-links {
+  padding-left: 0;
+}
+.wp-block-social-links .wp-social-link {
+  background-color: transparent !important; /* remove a cor da marca */
+  color: var(--destaque-texto) !important;
+  border: 1px solid var(--cor-borda);
+  border-radius: 50%;
+  padding: 0.45rem;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+.wp-block-social-links .wp-social-link:hover {
+  box-shadow: 0 0 16px var(--brilho);
+  transform: translateY(-2px);
+}
+
+.rodape-assinatura {
+  margin-top: 3rem;
+  font-family: var(--fonte-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: var(--texto-suave);
+}
+
+
+/* ---------------------------------------------------------------------
+   9. IMAGENS E GALERIAS
+   --------------------------------------------------------------------- */
+.wp-block-image img,
+.wp-block-gallery img {
+  border-radius: 14px;
+  border: 1px solid var(--cor-borda);
+  height: auto;
+}
+/* Galerias no fim de cada tópico: fotos inteiras (sem corte), em colunas
+   no estilo "mural", cada uma com a sua proporção original.
+   A galeria "vaza" a coluna de texto e ocupa mais a largura da tela,
+   centralizada (margens negativas iguais dos dois lados). */
+.secao .galeria-topico.wp-block-gallery {
+  --largura-galeria: min(72rem, 100vw - 3rem);
+  display: block;
+  width: var(--largura-galeria);
+  max-width: none;
+  margin-inline: calc((100% - var(--largura-galeria)) / 2) !important;
+  margin-top: 2.5rem;
+  columns: 4 10rem;          /* até 4 colunas; 3 no tablet, 2 no celular */
+  column-gap: 1rem;
+}
+.secao .galeria-topico.wp-block-gallery > .wp-block-image {
+  width: 100% !important;    /* o tema calcula larguras fixas para galerias */
+  margin: 0 0 1rem !important;
+  break-inside: avoid;
+}
+.secao .galeria-topico.wp-block-gallery img {
+  width: 100%;
+  height: auto !important;
+  object-fit: contain !important; /* nunca recorta a foto */
+}
+
+/* Galerias com poucas fotos (até 6, ex.: Pintura): fotos lado a lado,
+   todas com a mesma altura, largura de acordo com a proporção de cada uma
+   (sem corte), e as linhas centralizadas. */
+.secao .galeria-topico.galeria-poucas.wp-block-gallery {
+  --altura-foto: clamp(11rem, 28vw, 20rem);
+  --largura-galeria: min(60rem, 100vw - 3rem); /* ≈ 3 fotos verticais por linha */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  columns: auto;
+}
+.secao .galeria-topico.galeria-poucas.wp-block-gallery > .wp-block-image {
+  width: auto !important;
+  height: var(--altura-foto);
+  margin: 0 !important;
+  flex: 0 0 auto;
+}
+.secao .galeria-topico.galeria-poucas.wp-block-gallery img {
+  width: auto !important;
+  height: 100% !important;
+  max-width: 100%;
+}
+
+.wp-element-caption,
+figcaption {
+  color: var(--texto-suave);
+  font-family: var(--fonte-mono);
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+::selection {
+  background: var(--lilas);
+  color: var(--texto);
+}
+
+
+/* ---------------------------------------------------------------------
+   10. CELULAR (telas até 600px)
+   --------------------------------------------------------------------- */
+@media (max-width: 600px) {
+  body {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+  .hero {
+    min-height: 52vh;
+  }
+}
+
+/* Respeita quem configurou o sistema para "reduzir animações" */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
